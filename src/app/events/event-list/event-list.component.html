@@ -1,0 +1,47 @@
+<div class="container mt-3">
+    <h3>Upcoming Events</h3>
+  
+    <div class="row mb-3">
+        <div class="col-md-8 text-left">
+            <button class="btn btn-primary" routerLink="/events/add">Add Event</button>
+          </div>
+      <div class="col-md-4">
+        <input
+          type="date"
+          class="form-control"
+          [(ngModel)]="selectedDate"
+          (change)="onDateChange()"
+        />
+      </div>
+    </div>
+  
+    <div class="list-group">
+      <div *ngFor="let event of paginatedEvents" class="list-group-item">
+        <h5><strong>Event:</strong> {{ event.title }}</h5>
+        <p><strong>Date:</strong> {{ event.date }}</p>
+        <p><strong>location:</strong> {{ event.location }}</p>
+        <p><strong>Description:</strong> {{ event.description }}</p>
+        <button class="btn btn-info btn-sm me-2" (click)="viewDetails(event.id)">View</button>
+        <button class="btn btn-warning btn-sm me-2" (click)="editEvent(event.id)">Edit</button>
+        <button class="btn btn-danger btn-sm" (click)="deleteEvent(event.id)">Delete</button>
+      </div>
+    </div>
+  
+
+    <nav class="mt-3" *ngIf="filteredEvents.length > pageSize">
+      <ul class="pagination justify-content-center">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+          <button class="page-link" (click)="prevPage()">Previous</button>
+        </li>
+        <li class="page-item disabled">
+          <span class="page-link">Page {{ currentPage }} of {{ totalPages }}</span>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === totalPages">
+          <button class="page-link" (click)="nextPage()">Next</button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  
+  

@@ -1,0 +1,35 @@
+<div class="container mt-4">
+    <h4>{{ isEditMode ? 'Edit Event' : 'Add Event' }}</h4>
+  
+    <form [formGroup]="eventForm" (ngSubmit)="submitForm()">
+      <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input type="text" class="form-control" formControlName="title" />
+      </div>
+  
+      <div class="mb-3">
+        <label class="form-label">Date</label>
+        <input type="date" class="form-control" formControlName="date" />
+      </div>
+  
+      <div class="mb-3">
+        <label class="form-label">Location</label>
+        <input type="text" class="form-control" formControlName="location" />
+      </div>
+  
+      <div class="mb-3">
+        <label class="form-label">Description</label>
+        <textarea class="form-control" formControlName="description"></textarea>
+      </div>
+  
+      <button class="btn btn-success" type="submit">
+        {{ isEditMode ? 'Update' : 'Add' }}
+      </button>
+      <button class="btn btn-secondary ms-2" type="button" (click)="router.navigate(['/events'])">
+        Cancel
+      </button>
+    </form>
+  </div>
+
+
+  
